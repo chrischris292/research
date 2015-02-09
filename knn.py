@@ -15,8 +15,8 @@ trainingSize = (lengthOutcome/4)*3
 
 def classify(Xi,yi,testData):
     print("finshed importing data")
-    from sklearn.neighbors import KNeighborsClassifier
-    neigh = KNeighborsClassifier(n_neighbors=30)
+    from sklearn import neighbors
+    neigh = neighbors.KNeighborsRegressor(3)
     neigh.fit(Xi, yi)
     squaredErrorSum = 0.0;
     for test in testData:
@@ -38,13 +38,13 @@ def main():
         levelOne = csv.reader(csvfile, delimiter=',')
         count = 0
         for row in levelOne:
+            row = map(float, row)
             'Load Training Data'
             if count<=trainingSize:
                 X.append(row[1:len(row)-1])
                 y.append(row[len(row)-1])
                 count = count+1
             elif(trainingSize<count and count<lengthOutcome):
-                row = map(float, row)
                 testData.append(row)
                 count = count+1
         classify(X,y,testData)
