@@ -15,7 +15,7 @@ trainingSize = (lengthOutcome/4)*3
 
 class knn:
     def __init__(self,fileName):
-        self.main(fileName)
+        self.loadData(fileName)
 
     def classify(self,Xi,yi,testData):
         print("finshed importing data")
@@ -36,7 +36,7 @@ class knn:
         meanSquaredError = squaredErrorSum/lengthOutcome;
         print(meanSquaredError)
 
-    def main(self,fileName):
+    def loadData(self,fileName):
         testData = []
         with open(fileName) as csvfile:
             levelOne = csv.reader(csvfile, delimiter=',')
